@@ -1,27 +1,40 @@
+// app/src/main/java/com/example/pomoappl/MainActivity.kt
 package com.example.pomoappl
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import com.example.pomoappl.ui.theme.PomoApplTheme
-import com.example.pomoappl.ui.timer.TimerScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.pomoappl.ui.compose.navigation.SetupNavGraph
+import com.example.pomoappl.ui.theme.PomoAppLTheme
+import com.example.pomoappl.viewmodel.SettingsViewModel
 
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            PomoApplTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) {
-                    TimerScreen()
+            val settingsViewModel: SettingsViewModel = viewModel()
+            val isDarkModeEnabled by settingsViewModel.isDarkModeEnabled.collectAsState()
+
+            PomoAppLTheme(darkTheme = isDarkModeEnabled) { // Aplica o tema com base na configuração
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    val navController = rememberNavController()
+                    SetupNavGraph(navController = navController)
                 }
             }
         }
     }
+}
+
+private fun MainActivity.rememberNavController() {
+    TODO("Not yet implemented")
 }
