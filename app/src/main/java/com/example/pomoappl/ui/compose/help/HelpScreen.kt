@@ -1,4 +1,3 @@
-// app/src/main/java/com/example/pomoappl/ui/compose/help/HelpScreen.kt
 package com.example.pomoappl.ui.compose.help
 
 import androidx.compose.foundation.layout.*
@@ -6,7 +5,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Timer
@@ -18,11 +16,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HelpScreen(navController: NavController) {
+fun HelpScreen(navController: Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -111,10 +108,12 @@ fun HelpScreen(navController: NavController) {
             }
             item {
                 Spacer(modifier = Modifier.height(16.dp))
-                Button(onClick = { /* Simular envio de mensagem */ }) {
+                Button(onClick = { }) {
                     Text("Enviar Mensagem para Suporte")
                 }
             }
         }
     }
 }
+
+private fun Unit.navigate(string: String) {}

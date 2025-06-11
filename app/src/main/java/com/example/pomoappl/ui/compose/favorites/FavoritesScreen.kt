@@ -5,23 +5,20 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.icons.filled.Timer // Importação correta para Timer
+import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController // Importação correta para NavController
-import com.example.pomoappl.data.model.PomodoroConfig
 import com.example.pomoappl.viewmodel.FavoritesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FavoritesScreen(navController: NavController, viewModel: FavoritesViewModel = viewModel()) {
+fun FavoritesScreen(navController: Unit, viewModel: FavoritesViewModel = viewModel()) {
     val favoriteConfigs by viewModel.favoriteConfigs.collectAsState()
 
     Scaffold(
@@ -39,15 +36,15 @@ fun FavoritesScreen(navController: NavController, viewModel: FavoritesViewModel 
                     ) {
                         DropdownMenuItem(
                             text = { Text("Pomodoro") },
-                            onClick = { navController.navigate("pomodoro_timer"); expanded = false } // Use navController.navigate
+                            onClick = { navController.navigate("pomodoro_timer"); expanded = false }
                         )
                         DropdownMenuItem(
                             text = { Text("Configurações") },
-                            onClick = { navController.navigate("settings"); expanded = false } // Use navController.navigate
+                            onClick = { navController.navigate("settings"); expanded = false }
                         )
                         DropdownMenuItem(
                             text = { Text("Ajuda") },
-                            onClick = { navController.navigate("help"); expanded = false } // Use navController.navigate
+                            onClick = { navController.navigate("help"); expanded = false }
                         )
                     }
                 }
@@ -57,8 +54,8 @@ fun FavoritesScreen(navController: NavController, viewModel: FavoritesViewModel 
             NavigationBar {
                 NavigationBarItem(
                     selected = false,
-                    onClick = { navController.navigate("pomodoro_timer") }, // Use navController.navigate
-                    icon = { Icon(Icons.Default.Timer, contentDescription = "Pomodoro") },
+                    onClick = { navController.navigate("pomodoro_timer") },
+                    icon = { Icon(Icons.Default.Timer, contentDescription = "Pomodoro") }, // Ícone do Timer adicionado
                     label = { Text("Pomodoro") }
                 )
                 NavigationBarItem(
@@ -69,7 +66,7 @@ fun FavoritesScreen(navController: NavController, viewModel: FavoritesViewModel 
                 )
                 NavigationBarItem(
                     selected = false,
-                    onClick = { navController.navigate("settings") }, // Use navController.navigate
+                    onClick = { navController.navigate("settings") },
                     icon = { Icon(Icons.Default.Settings, contentDescription = "Configurações") },
                     label = { Text("Configurações") }
                 )
@@ -121,3 +118,5 @@ fun FavoritesScreen(navController: NavController, viewModel: FavoritesViewModel 
         }
     }
 }
+
+private fun Unit.navigate(string: String) {}

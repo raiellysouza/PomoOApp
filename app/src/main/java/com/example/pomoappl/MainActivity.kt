@@ -1,4 +1,3 @@
-// app/src/main/java/com/example/pomoappl/MainActivity.kt
 package com.example.pomoappl
 
 import android.os.Bundle
@@ -11,7 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.pomoappl.ui.compose.navigation.SetupNavGraph
+import com.example.pomoappl.ui.compose.navigation.NavGraph
 import com.example.pomoappl.ui.theme.PomoAppLTheme
 import com.example.pomoappl.viewmodel.SettingsViewModel
 
@@ -22,13 +21,13 @@ class MainActivity : ComponentActivity() {
             val settingsViewModel: SettingsViewModel = viewModel()
             val isDarkModeEnabled by settingsViewModel.isDarkModeEnabled.collectAsState()
 
-            PomoAppLTheme(darkTheme = isDarkModeEnabled) { // Aplica o tema com base na configuração
+            PomoAppLTheme(darkTheme = isDarkModeEnabled) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    SetupNavGraph(navController = navController)
+                    NavGraph(navController = navController)
                 }
             }
         }

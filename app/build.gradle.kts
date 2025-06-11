@@ -64,6 +64,11 @@ dependencies {
     // Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
+    // Icons Material Design
+    implementation("androidx.compose.material:material-icons-extended:1.6.4") // Para Material Design 2
+    // Se você estiver usando Material Design 3, use:
+    // implementation("androidx.compose.material3:material3-icons-extended:1.3.0-beta01")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

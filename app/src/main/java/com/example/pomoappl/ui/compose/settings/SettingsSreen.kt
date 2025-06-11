@@ -1,10 +1,8 @@
-// app/src/main/java/com/example/pomoappl/ui/compose/settings/SettingsScreen.kt
 package com.example.pomoappl.ui.compose.settings
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Timer
@@ -14,12 +12,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import com.example.pomoappl.viewmodel.SettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = viewModel()) {
+fun SettingsScreen(navController: Unit, viewModel: SettingsViewModel = viewModel()) {
     val isDarkModeEnabled by viewModel.isDarkModeEnabled.collectAsState()
     val areNotificationsEnabled by viewModel.areNotificationsEnabled.collectAsState()
 
@@ -68,7 +65,7 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
                 )
                 NavigationBarItem(
                     selected = true,
-                    onClick = { /* Já estamos na tela de configurações */ },
+                    onClick = { },
                     icon = { Icon(Icons.Default.Settings, contentDescription = "Configurações") },
                     label = { Text("Configurações") }
                 )
@@ -95,7 +92,6 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
             }
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Switch para Notificações
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
@@ -126,3 +122,5 @@ fun SettingsScreen(navController: NavController, viewModel: SettingsViewModel = 
         }
     }
 }
+
+private fun Unit.navigate(string: String) {}
